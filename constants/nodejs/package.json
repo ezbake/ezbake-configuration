@@ -1,0 +1,19 @@
+{
+  "name": "configurationConstants",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NodeJs rendering of constants template",
+  "main": "./lib/constants.js",
+  "keywords": [
+    "ezconfiguration",
+    "ezconfig",
+    "configuration",
+    "config",
+    "constants"
+  ],
+  "author": "Steven Stapleton",
+  "licenses": [{
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+  }]
+}

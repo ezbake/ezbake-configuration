@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Loads all EzBake configuration properties into the namespace as shell
+# variables.
+#
+# Call by:
+#       source ezbake_configuration
+
+source ./ezbake_configuration_functions
+eval $(ezbake_env)

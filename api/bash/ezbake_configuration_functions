@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Functions to load EzBake configuration variables from properties.
+#
+
+# Location of EzBake configuration properties files.
+EZBAKE_CONFIGURATION_DIR=${EZBAKE_CONFIGURATION_DIR:-"/etc/sysconfig/ezbake"}
+
+# Location of the constants file that maps bash variable names into property
+# names. The file should have the form:
+#
+#   BASH_VAR_NAME=property.name
+#
+# with one variable/property pair per line.
+EZBAKE_CONFIGURATION_CONSTANTS=$EZBAKE_CONFIGURATION_DIR/ezbake.constants
+
+# Loads one or more properties files and returns a list of shell variable
+# assignments.
+#
+# Loads properties from one or more files given as arguments. If no arguments
+# are given, then all of the properties files in $EZBAKE_CONFIGURATION_DIR are
+# loaded. For example
+#
+#     source ezbake_configuration_functions
+#     ezbake_env foo.props bar.props    # Loads from foo.props and bar.props
+#     ezbake_env                        # Loads from $EZBAKE_CONFIGURATION_DIR
+#
+# The variable assignments can then be placed into the local namespace by using
+# eval. For example:
+#
+#     source ezbake_configuration_functions
+#     eval $(ezbake_env)
+#
+# To avoid this step, source ezbake_configuration.
+ezbake_env() {
+    if [ $# -lt 1 ]; then
+        _FILES=$EZBAKE_CONFIGURATION_DIR/*.properties
+    else
+        _FILES="$@"
+    fi
+
+    join -a1 -t= -1 2 -2 1 -o "1.1 2.2" \
+            <(sort -t= -k2 $EZBAKE_CONFIGURATION_CONSTANTS) \
+            <(sort -t= -k1 $_FILES) \
+    	| awk -F'=' '{ printf "%s=\"%s\";\n", $1, $2; }'
+}

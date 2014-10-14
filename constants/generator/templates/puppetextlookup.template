@@ -1,0 +1,10 @@
+class ezconfig::params {
+{% for group, consts in constants.iteritems() %}
+
+	# [{{group}}]
+{% for const in consts %}
+	# (type: {{const.type}}) {{const.description}}
+	${{const.variableName}}			= extlookup("{{const.propertyName}}", undef, 'ezconfig')
+{% endfor %}
+{% endfor %}
+}

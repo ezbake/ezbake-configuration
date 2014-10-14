@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--   Copyright (C) 2013-2014 Computer Sciences Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. -->
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ezbake</groupId>
+    <artifactId>configuration</artifactId>
+    <version>2.0-SNAPSHOT</version>
+    <packaging>nar</packaging>
+
+    <name>EzBake Configuration C++</name>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.maven-nar</groupId>
+                <artifactId>nar-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <cpp>
+                        <name>g++</name>
+                        <includePaths>
+                            <includePath>${basedir}/src/main/cpp/include</includePath>
+                        </includePaths>
+                        <debug>true</debug>
+                        <options>
+                            <option>-O0</option>
+                            <option>-g3</option>
+                            <option>-fmessage-length=0</option>
+                            <option>-std=c++0x</option>
+                        </options>
+                    </cpp>
+                    <libraries>
+                        <library>
+                            <type>shared</type>
+                        </library>
+                    </libraries>
+                    <tests>
+                        <test>
+                            <name>utapp</name>
+                        </test>
+                    </tests>
+                    <linker>
+                        <name>g++</name>
+                        <sysLibs>
+                            <sysLib>
+                                <name>pthread</name>
+                            </sysLib>
+                            <sysLib>
+                                <name>boost_thread</name>
+                            </sysLib>
+                            <sysLib>
+                                <name>boost_system</name>
+                            </sysLib>
+                            <sysLib>
+                                <name>boost_filesystem</name>
+                            </sysLib>
+                            <sysLib>
+                                <name>log4cxx</name>
+                            </sysLib>
+                            <sysLib>
+                                <name>ssl</name>
+                            </sysLib>
+                            <sysLib>
+                                <name>crypto</name>
+                            </sysLib>
+                        </sysLibs>
+                    </linker>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
