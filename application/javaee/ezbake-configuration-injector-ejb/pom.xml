@@ -18,15 +18,13 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ezbake</groupId>
   <artifactId>ezbake-configuration-injector-ejb</artifactId>
-  <version>2.0-SNAPSHOT</version>
   <packaging>ejb</packaging>
 
   <parent>
     <groupId>ezbake</groupId>
     <artifactId>ezbake-configuration-javaee</artifactId>
-    <version>2.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
   </parent>
 
   <properties>
@@ -81,7 +79,7 @@
     <dependency>
       <groupId>ezbake</groupId>
       <artifactId>ezbake-configuration-api</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <version>${ezbake.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.thrift</groupId>
